@@ -7,11 +7,11 @@ namespace Assets.Scripts.Movement
     {
         public float Weight = 1;
 
-        protected Rabbit rabbit;
+        protected Creature creature;
 
         private void Awake()
         {
-            rabbit = GetComponent<Rabbit>();
+            creature = GetComponent<Creature>();
         }
 
         public abstract Vector3 GetDesiredVelocity();
