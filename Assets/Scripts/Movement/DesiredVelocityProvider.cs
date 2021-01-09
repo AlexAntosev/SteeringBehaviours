@@ -9,7 +9,7 @@ namespace Assets.Scripts.Movement
 
         protected Creature creature;
 
-        public Transform nearestCreature;
+        public Creature nearestCreature;
 
         private void Awake()
         {

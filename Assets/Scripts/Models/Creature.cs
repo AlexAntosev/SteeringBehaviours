@@ -6,6 +6,8 @@ namespace Assets.Scripts.Models
 {
     public class Creature : MonoBehaviour
     {
+        public bool isAlive = true;
+
         public Vector3 velocity;
 
         public Vector3 acceleration;
@@ -18,7 +20,7 @@ namespace Assets.Scripts.Models
 
         public float epsilone = 0.5f;
 
-        private Transform _nearestTarget;
+        private Creature _nearestCreature;
 
         public void ApplyForce(Vector3 force)
         {
@@ -28,6 +30,11 @@ namespace Assets.Scripts.Models
 
         public void Update()
         {
+            if (!isAlive)
+            {
+                return;
+            }
+
             ApplyFriction();
 
             GetNearestTarget();
@@ -80,7 +87,7 @@ namespace Assets.Scripts.Models
 
             foreach (var movementProvider in movementProviders)
             {
-                movementProvider.nearestCreature = _nearestTarget;
+                movementProvider.nearestCreature = _nearestCreature;
                 desiredVelocity += movementProvider.GetDesiredVelocity();
             }
 
@@ -95,7 +102,7 @@ namespace Assets.Scripts.Models
                 return;
             }
 
-            _nearestTarget = flairResolver.GetNearestTarget();     
+            _nearestCreature = flairResolver.GetNearestCreature();     
         }
     }
 }

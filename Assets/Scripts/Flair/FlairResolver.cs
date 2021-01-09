@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Models;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,14 +10,14 @@ namespace Assets.Scripts.Flair
         [SerializeField, Range(0, 100)]
         private float radius = 1;
 
-        public List<Transform> targets;
+        public List<Creature> targets;
 
-        public Transform GetNearestTarget()
+        public Creature GetNearestCreature()
         {
-            var targetDistances = new Dictionary<Transform, float>();
+            var targetDistances = new Dictionary<Creature, float>();
             foreach (var target in targets)
             {
-                var distance = (transform.position - target.position).magnitude;
+                var distance = (transform.position - target.transform.position).magnitude;
                 if (distance < radius)
                 {
                     targetDistances.Add(target, distance);

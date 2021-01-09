@@ -4,11 +4,9 @@ namespace Assets.Scripts.Movement
 {
     public class SeekVelocityProvider : DesiredVelocityProvider
     {
-        public Transform objectToFollow;
-
         public override Vector3 GetDesiredVelocity()
         {
-            if (nearestCreature == null)
+            if (nearestCreature == null || nearestCreature.transform == null || !nearestCreature.isAlive)
             {
                 return Vector3.zero;
             }
@@ -18,7 +16,7 @@ namespace Assets.Scripts.Movement
 
         private Vector3 Seek()
         {
-            var desiredVelocity = (nearestCreature.position - transform.position).normalized * creature.velocityLimit;
+            var desiredVelocity = (nearestCreature.transform.position - transform.position).normalized * creature.velocityLimit;
 
             return desiredVelocity;
         }
