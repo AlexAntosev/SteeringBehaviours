@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Movement;
+using Assets.Scripts.Movement.Builders;
 using UnityEngine;
 
 namespace Assets.Scripts.Models
@@ -16,6 +17,8 @@ namespace Assets.Scripts.Models
         public float steeringForceLimit = 5;
 
         public float epsilone = 0.5f;
+
+        public DesiredVelocityBuilder desiredVelocityBuilder;
 
         public void ApplyForce(Vector3 force)
         {
@@ -40,13 +43,7 @@ namespace Assets.Scripts.Models
 
         private void ApplySteeringForce()
         {
-            var movementProvider = GetComponent<DesiredVelocityProvider>();
-            if (movementProvider == null)
-            {
-                return;
-            }
-
-            var desiredVelocity = movementProvider.GetDesiredVelocity();
+            var desiredVelocity = GetDesiredVelocity();
             var steeringForce = desiredVelocity - velocity;
 
             ApplyForce(steeringForce.normalized * steeringForceLimit);
@@ -67,6 +64,19 @@ namespace Assets.Scripts.Models
             transform.position += velocity * Time.deltaTime;
             acceleration = Vector3.zero;
             transform.rotation = Quaternion.LookRotation(velocity);
+        }
+
+        protected virtual Vector3 GetDesiredVelocity()
+        {
+            var movementProvider = GetComponent<DesiredVelocityProvider>();
+            if (movementProvider == null)
+            {
+                return Vector3.zero;
+            }
+
+            var desiredVelocity = movementProvider.GetDesiredVelocity();
+
+            return desiredVelocity;
         }
     }
 }
