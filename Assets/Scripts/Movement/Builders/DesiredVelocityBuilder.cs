@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Movement.Providers;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Movement.Builders
@@ -39,6 +40,26 @@ namespace Assets.Scripts.Movement.Builders
             }
 
             movementProvider.objectToFollow = objectToFollow;
+
+            _desiredVelocity = movementProvider.GetDesiredVelocity();
+
+            return this;
+        }
+
+        public DesiredVelocityBuilder AddFlee(Func<bool> condition, Transform objectToFlee)
+        {
+            if (!condition())
+            {
+                return this;
+            }
+
+            var movementProvider = GetComponent<FleeVelocityProvider>();
+            if (movementProvider == null)
+            {
+                return this;
+            }
+
+            movementProvider.objectToFlee = objectToFlee;
 
             _desiredVelocity = movementProvider.GetDesiredVelocity();
 
