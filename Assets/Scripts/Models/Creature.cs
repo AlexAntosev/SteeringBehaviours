@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Movement;
-using Assets.Scripts.Movement.Builders;
+﻿using Assets.Scripts.Flair;
+using Assets.Scripts.Movement;
 using UnityEngine;
 
 namespace Assets.Scripts.Models
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Models
 
         public float epsilone = 0.5f;
 
-        public DesiredVelocityBuilder desiredVelocityBuilder;
+        private Transform _nearestTarget;
 
         public void ApplyForce(Vector3 force)
         {
@@ -29,6 +29,8 @@ namespace Assets.Scripts.Models
         public void Update()
         {
             ApplyFriction();
+
+            GetNearestTarget();
 
             ApplySteeringForce();
 
@@ -68,15 +70,32 @@ namespace Assets.Scripts.Models
 
         protected virtual Vector3 GetDesiredVelocity()
         {
-            var movementProvider = GetComponent<DesiredVelocityProvider>();
-            if (movementProvider == null)
+            var movementProviders = GetComponents<DesiredVelocityProvider>();
+            if (movementProviders == null)
             {
                 return Vector3.zero;
             }
 
-            var desiredVelocity = movementProvider.GetDesiredVelocity();
+            var desiredVelocity = Vector3.zero;
+
+            foreach (var movementProvider in movementProviders)
+            {
+                movementProvider.nearestCreature = _nearestTarget;
+                desiredVelocity += movementProvider.GetDesiredVelocity();
+            }
 
             return desiredVelocity;
+        }
+
+        public void GetNearestTarget()
+        {
+            var flairResolver = GetComponent<FlairResolver>();
+            if (flairResolver == null)
+            {
+                return;
+            }
+
+            _nearestTarget = flairResolver.GetNearestTarget();     
         }
     }
 }

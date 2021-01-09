@@ -8,12 +8,17 @@ namespace Assets.Scripts.Movement.Providers
 
         public override Vector3 GetDesiredVelocity()
         {
+            if (nearestCreature == null)
+            {
+                return Vector3.zero;
+            }
+
             return Seek();
         }
 
         private Vector3 Seek()
         {
-            var desiredVelocity = -(objectToFlee.position - transform.position).normalized * creature.velocityLimit;
+            var desiredVelocity = -(nearestCreature.position - transform.position).normalized * creature.velocityLimit;
 
             return desiredVelocity;
         }

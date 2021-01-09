@@ -14,6 +14,11 @@ namespace Assets.Scripts.Movement
 
         public override Vector3 GetDesiredVelocity()
         {
+            if(nearestCreature != null)
+            {
+                return Vector3.zero;
+            }
+
             return Wonder();
         }
 

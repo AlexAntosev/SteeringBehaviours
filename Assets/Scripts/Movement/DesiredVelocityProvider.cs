@@ -9,6 +9,8 @@ namespace Assets.Scripts.Movement
 
         protected Creature creature;
 
+        public Transform nearestCreature;
+
         private void Awake()
         {
             creature = GetComponent<Creature>();
