@@ -8,9 +8,9 @@ namespace Assets.Scripts.Movement.Providers
 
         public override Vector3 GetDesiredVelocity()
         {
-            var camera = Camera.current;
-            var maxSpeed = creature.velocityLimit;
-            var velocity = creature.velocity;
+            var camera = Camera.main;
+            var maxSpeed = creature.VelocityLimit;
+            var velocity = creature.Velocity;
             if (camera == null)
             {
                 return velocity;

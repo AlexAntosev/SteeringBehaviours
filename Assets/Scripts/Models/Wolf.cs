@@ -11,9 +11,8 @@ namespace Assets.Scripts.Models
             {
                 return;
             }
-            creatureToKill.isAlive = false;
-            collision.gameObject.GetComponent<Renderer>().material.color = Color.red;
-
+            
+            creatureToKill.Kill();
         }
     }
 }

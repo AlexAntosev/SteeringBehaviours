@@ -22,14 +22,14 @@ namespace Assets.Scripts.Movement.Providers.Flock
                 float distance = (transform.position - flockCreature.transform.position).magnitude;
                 if ((distance > 0) && (distance < neighbordist))
                 {
-                    sum += flockCreature.velocity;
+                    sum += flockCreature.Velocity;
                     count++;
                 }
             }
             if (count > 0)
             {
                 sum /= count;
-                var steer = sum.normalized * creature.velocityLimit;
+                var steer = sum.normalized * creature.VelocityLimit;
 
                 return steer;
             }

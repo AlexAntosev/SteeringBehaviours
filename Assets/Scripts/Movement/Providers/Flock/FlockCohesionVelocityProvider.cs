@@ -39,7 +39,7 @@ namespace Assets.Scripts.Movement.Providers.Flock
 
         private Vector3 Seek(Vector3 objectToSeek)
         {
-            var desiredVelocity = (objectToSeek - transform.position).normalized * creature.velocityLimit;
+            var desiredVelocity = (objectToSeek - transform.position).normalized * creature.VelocityLimit;
 
             return desiredVelocity;
         }

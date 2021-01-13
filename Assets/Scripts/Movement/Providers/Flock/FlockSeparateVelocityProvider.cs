@@ -33,7 +33,7 @@ namespace Assets.Scripts.Movement.Providers.Flock
             {
                 sum /= count;
                 var normalized = sum.normalized;
-                var steer = normalized * creature.velocityLimit;
+                var steer = normalized * creature.VelocityLimit;
                 return steer;
             }
 
