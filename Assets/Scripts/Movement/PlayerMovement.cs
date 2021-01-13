@@ -1,36 +1,37 @@
 ﻿using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace Movement
 {
-    public Rigidbody rigidbody;
-
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerMovement : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey("d"))
+        private Rigidbody _rigidbody;
+    
+        private void Awake()
         {
-            rigidbody.AddForce(500 * Time.deltaTime, 0, 0);
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
-        if (Input.GetKey("a"))
+        void Update()
         {
-            rigidbody.AddForce(-500 * Time.deltaTime, 0, 0);
-        }
+            if (Input.GetKey("d"))
+            {
+                _rigidbody.AddForce(500 * Time.deltaTime, 0, 0);
+            }
 
-        if (Input.GetKey("w"))
-        {
-            rigidbody.AddForce(0, 0, 500 * Time.deltaTime);
-        }
+            if (Input.GetKey("a"))
+            {
+                _rigidbody.AddForce(-500 * Time.deltaTime, 0, 0);
+            }
 
-        if (Input.GetKey("s"))
-        {
-            rigidbody.AddForce(0, 0, -500 * Time.deltaTime);
+            if (Input.GetKey("w"))
+            {
+                _rigidbody.AddForce(0, 0, 500 * Time.deltaTime);
+            }
+
+            if (Input.GetKey("s"))
+            {
+                _rigidbody.AddForce(0, 0, -500 * Time.deltaTime);
+            }
         }
     }
 }
