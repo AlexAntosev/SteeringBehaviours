@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.Models;
-using Assets.Scripts.Shooting;
+﻿using Factories;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts
+namespace Models
 {
     public class Shooter : MonoBehaviour
     {
@@ -20,7 +19,7 @@ namespace Assets.Scripts
             if (Input.GetMouseButtonDown(0))
             {
                 var bullet = _bulletFactory.Create();
-                bullet.transform.position = transform.position;
+                bullet.transform.position = transform.position + transform.forward.normalized;
                 var positionTargetted = Vector3.zero;
                 var mousePoint = Input.mousePosition;
                 var ray = Camera.main.ScreenPointToRay(mousePoint);

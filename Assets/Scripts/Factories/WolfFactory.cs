@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Models;
+﻿using Models;
 using Zenject;
 
-namespace Installers
+namespace Factories
 {
     public class WolfFactory : PlaceholderFactory<Wolf>
     {

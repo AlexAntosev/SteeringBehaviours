@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Models;
 using UnityEngine;
 
-namespace Assets.Scripts.Flair
+namespace Flair
 {
     public class FlairResolver : MonoBehaviour
     {

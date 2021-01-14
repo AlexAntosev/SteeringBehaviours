@@ -1,5 +1,5 @@
-using Assets.Scripts.Models;
-using Assets.Scripts.Shooting;
+using Factories;
+using Models;
 using UnityEngine;
 using Zenject;
 

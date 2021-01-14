@@ -315,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187646214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.37, y: 1.78, z: -10.21}
+  m_LocalPosition: {x: -62.3, y: 1.78, z: -10.21}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -524,7 +524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590110083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.01, y: 0, z: 0}
+  m_LocalPosition: {x: -64.9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -617,6 +617,7 @@ GameObject:
   - component: {fileID: 885255294}
   - component: {fileID: 885255299}
   - component: {fileID: 885255300}
+  - component: {fileID: 885255301}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -708,7 +709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885255293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.56, z: 1.05}
+  m_LocalPosition: {x: -0.67, y: 1.56, z: -1.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -738,6 +739,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2747c5df9182245944504983ab3385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weight: 1
+--- !u!114 &885255301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885255293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b3a4c54703467438facd0ad9360909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 1
+  velocityLimit: 3
+  steeringForceLimit: 5
+  angle: 0
 --- !u!1 &907272603
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907272603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.7, y: 0, z: -4.6}
+  m_LocalPosition: {x: -60.8, y: 0, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1210,7 +1228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393756171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.5, y: 0, z: -4.6}
+  m_LocalPosition: {x: -67.6, y: 0, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1309,6 +1327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805d46fb1df60fa49aac01ffa5089805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rabbitsCount: 3
-  wolvesCount: 1
-  deersCount: 5
+  rabbitsCount: 0
+  wolvesCount: 0
+  deersCount: 0

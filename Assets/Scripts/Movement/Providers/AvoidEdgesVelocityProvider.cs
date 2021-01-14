@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Movement.Providers
+namespace Movement.Providers
 {
     public class AvoidEdgesVelocityProvider : DesiredVelocityProvider
     {

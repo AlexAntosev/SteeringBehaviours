@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Flair;
-using UnityEngine;
-
-namespace Assets.Scripts.Models
+﻿namespace Models
 {
     public class Rabbit : Creature
     {

@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Models;
+﻿using Models;
 
-namespace Assets.Scripts.Movement.Providers
+namespace Movement.Providers
 {
     public interface IAffectiveVelocityProvider
     {

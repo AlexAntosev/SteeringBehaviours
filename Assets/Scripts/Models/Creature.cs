@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Flair;
-using Assets.Scripts.Movement.Providers;
+﻿using Flair;
+using Movement.Providers;
 using UnityEngine;
 
-namespace Assets.Scripts.Models
+namespace Models
 {
     public class Creature : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Models;
 using UnityEngine;
 
-namespace Assets.Scripts.Movement.Providers.Flock
+namespace Movement.Providers.Flock
 {
     class FlockSeparateVelocityProvider : DesiredVelocityProvider
     {

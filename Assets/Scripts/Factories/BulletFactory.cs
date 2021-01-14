@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Models;
+﻿using Models;
 using Zenject;
 
-namespace Assets.Scripts.Shooting
+namespace Factories
 {
     public class BulletFactory : PlaceholderFactory<Bullet>
     {

@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Models;
+﻿using Models;
 using UnityEngine;
 
-namespace Assets.Scripts.Movement.Providers
+namespace Movement.Providers
 {
     public abstract class DesiredVelocityProvider : MonoBehaviour
     {

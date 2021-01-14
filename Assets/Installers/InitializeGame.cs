@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Flair;
-using Assets.Scripts.Models;
-using Assets.Scripts.Movement.Providers.Flock;
+using Factories;
+using Flair;
+using Models;
+using Movement.Providers.Flock;
 using UnityEngine;
 using Zenject;
 
