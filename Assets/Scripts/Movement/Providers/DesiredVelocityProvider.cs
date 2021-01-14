@@ -5,7 +5,7 @@ namespace Movement.Providers
 {
     public abstract class DesiredVelocityProvider : MonoBehaviour
     {
-        public float Weight = 1;
+        public float weight = 1;
 
         protected Creature creature;
 

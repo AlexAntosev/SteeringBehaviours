@@ -7,6 +7,10 @@ namespace Movement.Providers.Flock
     class FlockSeparateVelocityProvider : DesiredVelocityProvider
     {
         public List<Creature> flock;
+
+        [SerializeField, Range(0, 100)]
+        private float desiredSeparationDistance = 20;
+        
         public override Vector3 GetDesiredVelocity()
         {
             return Separate();
@@ -14,30 +18,43 @@ namespace Movement.Providers.Flock
 
         private Vector3 Separate()
         {
-            var r = 1; //creature size
-            float desiredSeparation = r * 2;
-            var sum = Vector3.zero;
-            int count = 0;
+            var velocity = Vector3.zero;
+            var nearFlockCreaturesCount = 0;
+
             foreach (var flockCreature in flock)
             {
-                float distance = (transform.position - flockCreature.transform.position).magnitude;
-                if ((distance > 0) && (distance < desiredSeparation))
+                float distanceToFlockCreature = (transform.position - flockCreature.transform.position).magnitude;
+                if (IsNearFlockCreature(distanceToFlockCreature))
                 {
-                    var diff = (transform.position - flockCreature.transform.position).normalized;
-                    diff /= distance;
-                    sum += diff;
-                    count++;
+                    var direction = (transform.position - flockCreature.transform.position).normalized;
+                    direction /= distanceToFlockCreature;
+                    
+                    velocity += direction;
+                    
+                    nearFlockCreaturesCount++;
                 }
             }
-            if (count > 0)
-            {
-                sum /= count;
-                var normalized = sum.normalized;
-                var steer = normalized * creature.VelocityLimit;
-                return steer;
-            }
 
-            return Vector3.zero;
+            if (IsNoFlockNear(nearFlockCreaturesCount))
+            {
+                return Vector3.zero;
+            }
+            
+            velocity /= nearFlockCreaturesCount;
+            var steeringForce = velocity.normalized * creature.VelocityLimit;
+            
+            return steeringForce;
+
+        }
+
+        private static bool IsNoFlockNear(int nearFlockCreaturesCount)
+        {
+            return nearFlockCreaturesCount <= 0;
+        }
+
+        private bool IsNearFlockCreature(float distanceToFlockCreature)
+        {
+            return (distanceToFlockCreature > 0) && (distanceToFlockCreature < desiredSeparationDistance);
         }
     }
 }

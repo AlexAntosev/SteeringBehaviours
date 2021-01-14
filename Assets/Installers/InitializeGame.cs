@@ -20,10 +20,10 @@ namespace Installers
         [SerializeField]
         private int deersCount;
 
-        private int minXAxis = -15;
-        private int maxXAxis = 15;
-        private int minZAxis = -15;
-        private int maxZAxis = 15;
+        private int minXAxis = -50;
+        private int maxXAxis = 50;
+        private int minZAxis = -50;
+        private int maxZAxis = 50;
         
         private RabbitFactory _rabbitFactory;
         private WolfFactory _wolfFactory;
@@ -32,6 +32,9 @@ namespace Installers
         private List<Rabbit> _rabbits;
         private List<Wolf> _wolves;
         private List<Deer> _deers;
+
+        [SerializeField]
+        private Human player;
 
         [Inject]
         public void Construct(RabbitFactory rabbitFactory, WolfFactory wolfFactory, DeerFactory deerFactory)
@@ -51,9 +54,9 @@ namespace Installers
             CreateWolves();
             CreateDeers();
 
-            SetupFlair();
+            SetupCreaturesFlair();
 
-            SetupFlock();
+            SetupDeersFlocks();
         }
 
         private void CreateRabbits()
@@ -95,25 +98,37 @@ namespace Installers
             creature.transform.position = new Vector3(x, y, z);
         }
 
-        private void SetupFlair()
+        private void SetupCreaturesFlair()
+        {
+            SetupRabbitsFlair();
+
+            SetupWolvesFlair();
+        }
+
+        private void SetupWolvesFlair()
+        {
+            foreach (var wolf in _wolves)
+            {
+                var flairResolver = wolf.GetComponent<FlairResolver>();
+                flairResolver.creaturesToFlair.AddRange(_rabbits);
+                flairResolver.creaturesToFlair.AddRange(_deers);
+                flairResolver.creaturesToFlair.Add(player);
+            }
+        }
+
+        private void SetupRabbitsFlair()
         {
             foreach (var rabbit in _rabbits)
             {
                 var flairResolver = rabbit.GetComponent<FlairResolver>();
-                flairResolver.targets.AddRange(_wolves);
-                flairResolver.targets.AddRange(_rabbits.Where(r => r != rabbit));
-                flairResolver.targets.AddRange(_deers);
-            }
-            
-            foreach (var wolf in _wolves)
-            {
-                var flairResolver = wolf.GetComponent<FlairResolver>();
-                flairResolver.targets.AddRange(_rabbits);
-                flairResolver.targets.AddRange(_deers);
+                flairResolver.creaturesToFlair.AddRange(_wolves);
+                flairResolver.creaturesToFlair.AddRange(_rabbits.Where(r => r != rabbit));
+                flairResolver.creaturesToFlair.AddRange(_deers);
+                flairResolver.creaturesToFlair.Add(player);
             }
         }
 
-        private void SetupFlock()
+        private void SetupDeersFlocks()
         {
             foreach (var deer in _deers)
             {

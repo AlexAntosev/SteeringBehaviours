@@ -14,32 +14,46 @@ namespace Models
         [SerializeField, Range(1, 10)]
         private float velocityLimit = 10;
 
-        private readonly float _epsilone = 0.5f;
+        private const float Epsilon = 0.5f;
 
         private Vector3 _direction;
 
-        public void Setup(Vector3 direction)
+        public void Construct(Vector3 position, Vector3 direction)
         {
+            transform.position = position;
             _direction = direction;
         }
 
         public void Update()
         {
+            Fly();
+        }
+
+        private void Fly()
+        {
             ApplyForce(_direction * velocityLimit);
-            
+
             ApplyForces();
         }
-        
+
         public void OnCollisionEnter(Collision collision)
         {
+            KillCreature(collision);
+        }
+
+        private static void KillCreature(Collision collision)
+        {
             var creatureToKill = collision.gameObject.GetComponent<Creature>();
-            if (creatureToKill == null)
+            if (CanNotKillCreature(creatureToKill))
             {
                 return;
             }
-            
+
             creatureToKill.Kill();
         }
+
+        private static bool CanNotKillCreature(Creature creatureToKill) => 
+            creatureToKill == null || !creatureToKill.IsAlive;
 
         private void ApplyForce(Vector3 force)
         {
@@ -53,7 +67,7 @@ namespace Models
 
             _velocity = Vector3.ClampMagnitude(_velocity, velocityLimit);
 
-            if (_velocity.magnitude < _epsilone)
+            if (_velocity.magnitude < Epsilon)
             {
                 _velocity = Vector3.zero;
                 return;

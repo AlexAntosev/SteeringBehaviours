@@ -10,28 +10,43 @@ namespace Flair
         [SerializeField, Range(0, 100)]
         private float radius = 1;
 
-        public List<Creature> targets;
+        public List<Creature> creaturesToFlair;
 
         public Creature GetNearestCreature()
         {
-            var targetDistances = new Dictionary<Creature, float>();
-            foreach (var target in targets)
-            {
-                var distance = (transform.position - target.transform.position).magnitude;
-                if (distance < radius)
-                {
-                    targetDistances.Add(target, distance);
-                }                
-            }
+            var distancesToAnotherCreatures = GetDistancesToAnotherCreatures();
 
-            if (!targetDistances.Any())
+            if (!distancesToAnotherCreatures.Any())
             {
                 return null;
             }
 
-            var nearestTarget = targetDistances.Aggregate((l, r) => l.Value < r.Value ? l : r).Key;
+            var nearestCreature = GetNearestCreature(distancesToAnotherCreatures);
+
+            return nearestCreature;
+        }
+
+        private static Creature GetNearestCreature(Dictionary<Creature, float> distancesToAnotherCreatures)
+        {
+            var nearestTarget = distancesToAnotherCreatures.Aggregate((l, r) =>
+                l.Value < r.Value ? l : r).Key;
 
             return nearestTarget;
+        }
+
+        private Dictionary<Creature, float> GetDistancesToAnotherCreatures()
+        {
+            var distancesToAnotherCreatures = new Dictionary<Creature, float>();
+            foreach (var target in creaturesToFlair)
+            {
+                var distance = (transform.position - target.transform.position).magnitude;
+                if (distance < radius)
+                {
+                    distancesToAnotherCreatures.Add(target, distance);
+                }
+            }
+
+            return distancesToAnotherCreatures;
         }
     }
 }

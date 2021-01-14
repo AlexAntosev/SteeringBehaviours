@@ -16,22 +16,52 @@ namespace Models
 
         public void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            var human = GetComponent<Human>();
+            if (CanShoot(human))
             {
-                var bullet = _bulletFactory.Create();
-                bullet.transform.position = transform.position + transform.forward.normalized;
-                var positionTargetted = Vector3.zero;
-                var mousePoint = Input.mousePosition;
-                var ray = Camera.main.ScreenPointToRay(mousePoint);
-                var plane = new Plane(Vector3.up, Vector3.zero);
-                if (plane.Raycast(ray, out float distance))
-                {
-                    positionTargetted = ray.GetPoint(distance);
-                }
-
-                var direction = positionTargetted.normalized;
-                bullet.Setup(direction);
+                Shoot();
             }
+        }
+
+        private static bool CanShoot(Human human) => 
+            Input.GetMouseButtonDown(0) &&
+            human != null &&
+            human.IsAlive;
+
+        private void Shoot()
+        {
+            var bullet = _bulletFactory.Create();
+
+            var bulletPosition = GetBulletPosition();
+            var bulletDirection = GetBulletDirection();
+
+            bullet.Construct(bulletPosition, bulletDirection);
+        }
+
+        private Vector3 GetBulletDirection()
+        {
+            return transform.forward.normalized;
+        }
+
+        private Vector3 GetBulletPosition()
+        {
+            var bulletPosition = transform.position + transform.forward.normalized;
+            return bulletPosition;
+        }
+
+        private static Vector3 GetCursorPosition()
+        {
+            var cursorPosition = Vector3.zero;
+            
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var plane = new Plane(Vector3.up, Vector3.zero);
+            
+            if (plane.Raycast(ray, out var distance))
+            {
+                cursorPosition = ray.GetPoint(distance);
+            }
+
+            return cursorPosition;
         }
     }
 }
