@@ -23,11 +23,14 @@ namespace Installers
         
         [SerializeField]
         private Bullet bulletPrefab;
+        
+        [SerializeField]
+        private GameObject ground;
 
-        private int minXAxis = -50;
-        private int maxXAxis = 50;
-        private int minZAxis = -50;
-        private int maxZAxis = 50;
+        private float minXAxis = -50;
+        private float maxXAxis = 50;
+        private float minZAxis = -50;
+        private float maxZAxis = 50;
         
         private RabbitFactory _rabbitFactory;
         private WolfFactory _wolfFactory;
@@ -58,6 +61,12 @@ namespace Installers
             _deers = new List<Deer>();
 
             _pull = pull;
+
+            var localScale = ground.transform.localScale;
+            minXAxis = -localScale.x / 2 + 10;
+            maxXAxis = localScale.x / 2 - 10;
+            minZAxis = -localScale.z / 2 + 10;
+            maxZAxis = localScale.z / 2 - 10;
         }
         
         void Start()
