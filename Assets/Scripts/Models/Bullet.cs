@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Models
 {
@@ -11,28 +12,37 @@ namespace Models
         [SerializeField, Range(0.01f, 10f)]
         private float mass = 0.01f;
 
-        [SerializeField, Range(1, 10)]
-        private float velocityLimit = 10;
+        [SerializeField, Range(1, 1000)]
+        private float velocityLimit = 100;
 
         private const float Epsilon = 0.5f;
 
         private Vector3 _direction;
 
+        public event EventHandler OnStop;
+
         public void Construct(Vector3 position, Vector3 direction)
         {
             transform.position = position;
             _direction = direction;
+            
+            ApplyForce(_direction * velocityLimit);
         }
 
         public void Update()
         {
             Fly();
+
+            if (_velocity == Vector3.zero)
+            {
+                OnStop?.Invoke(null, EventArgs.Empty);
+            }
         }
 
         private void Fly()
         {
-            ApplyForce(_direction * velocityLimit);
-
+            ApplyFriction();
+            
             ApplyForces();
         }
 
@@ -41,7 +51,7 @@ namespace Models
             KillCreature(collision);
         }
 
-        private static void KillCreature(Collision collision)
+        private void KillCreature(Collision collision)
         {
             var creatureToKill = collision.gameObject.GetComponent<Creature>();
             if (CanNotKillCreature(creatureToKill))
@@ -50,6 +60,7 @@ namespace Models
             }
 
             creatureToKill.Kill();
+            OnStop?.Invoke(null, EventArgs.Empty);
         }
 
         private static bool CanNotKillCreature(Creature creatureToKill) => 
@@ -59,6 +70,15 @@ namespace Models
         {
             force /= mass;
             _acceleration += force;
+        }
+        
+        private void ApplyFriction()
+        {
+            if (_velocity.magnitude > 0)
+            {
+                var friction = -_velocity.normalized * 0.01f;
+                ApplyForce(friction);
+            }
         }
 
         private void ApplyForces()

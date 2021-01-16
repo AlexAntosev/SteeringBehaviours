@@ -98,7 +98,7 @@ namespace Models
 
             foreach (var movementProvider in movementProviders)
             {
-                desiredVelocity += movementProvider.GetDesiredVelocity();
+                desiredVelocity += movementProvider.GetDesiredVelocity() * movementProvider.weight;
             }
 
             return desiredVelocity;

@@ -6,10 +6,10 @@ namespace Models
 {
     public class Shooter : MonoBehaviour
     {
-        private BulletFactory _bulletFactory;
+        private BulletPullFactory _bulletFactory;
 
         [Inject]
-        public void Construct(BulletFactory bulletFactory)
+        public void Construct(BulletPullFactory bulletFactory)
         {
             _bulletFactory = bulletFactory;
         }

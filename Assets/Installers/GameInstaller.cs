@@ -1,5 +1,6 @@
 using Factories;
 using Models;
+using Pulls;
 using UnityEngine;
 using Zenject;
 
@@ -22,7 +23,9 @@ namespace Installers
         // ReSharper disable Unity.PerformanceAnalysis
         public override void InstallBindings()
         {
-            Container.BindFactory<Bullet, BulletFactory>().FromComponentInNewPrefab(bullet);
+            Container.Bind<GenericPull>().AsSingle();
+            // Container.BindFactory<Bullet, BulletFactory>().FromComponentInNewPrefab(bullet);
+            Container.BindFactory<Bullet, BulletPullFactory>().FromComponentInNewPrefab(bullet);
             Container.BindFactory<Rabbit, RabbitFactory>().FromComponentInNewPrefab(rabbit);
             Container.BindFactory<Wolf, WolfFactory>().FromComponentInNewPrefab(wolf);
             Container.BindFactory<Deer, DeerFactory>().FromComponentInNewPrefab(deer);

@@ -4,6 +4,7 @@ using Factories;
 using Flair;
 using Models;
 using Movement.Providers.Flock;
+using Pulls;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,9 @@ namespace Installers
         
         [SerializeField]
         private int deersCount;
+        
+        [SerializeField]
+        private Bullet bulletPrefab;
 
         private int minXAxis = -50;
         private int maxXAxis = 50;
@@ -36,8 +40,14 @@ namespace Installers
         [SerializeField]
         private Human player;
 
+        private GenericPull _pull;
+
         [Inject]
-        public void Construct(RabbitFactory rabbitFactory, WolfFactory wolfFactory, DeerFactory deerFactory)
+        public void Construct(
+            RabbitFactory rabbitFactory,
+            WolfFactory wolfFactory,
+            DeerFactory deerFactory,
+            GenericPull pull)
         {
             _rabbitFactory = rabbitFactory;
             _wolfFactory = wolfFactory;
@@ -46,6 +56,8 @@ namespace Installers
             _rabbits = new List<Rabbit>();
             _wolves = new List<Wolf>();
             _deers = new List<Deer>();
+
+            _pull = pull;
         }
         
         void Start()
@@ -57,6 +69,8 @@ namespace Installers
             SetupCreaturesFlair();
 
             SetupDeersFlocks();
+
+            SetupPullPrefabs();
         }
 
         private void CreateRabbits()
@@ -144,6 +158,12 @@ namespace Installers
                 flockSeparateVelocityProvider.flock = new List<Creature>();
                 flockSeparateVelocityProvider.flock.AddRange(_deers.Where(d => d != deer));
             }
+        }
+        
+        
+        private void SetupPullPrefabs()
+        {
+            _pull.prefabs.Add(bulletPrefab.gameObject);
         }
     }
 }
