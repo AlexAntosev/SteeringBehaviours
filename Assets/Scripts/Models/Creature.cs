@@ -84,6 +84,7 @@ namespace Models
             transform.position += _velocity * Time.deltaTime;
             _acceleration = Vector3.zero;
             transform.rotation = Quaternion.LookRotation(_velocity);
+            LockRotation();
         }
 
         private Vector3 GetDesiredVelocity()
@@ -129,6 +130,13 @@ namespace Models
             var nearestCreature = flairResolver.GetNearestCreature();  
             
             return nearestCreature;
+        }
+        
+        private void LockRotation()
+        {
+            var quaternion = transform.rotation;
+            quaternion.eulerAngles = new Vector3(0, quaternion.eulerAngles.y, 0);
+            transform.rotation = quaternion;
         }
     }
 }
