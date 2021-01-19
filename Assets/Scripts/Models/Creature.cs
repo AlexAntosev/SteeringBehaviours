@@ -1,5 +1,4 @@
-﻿using Flair;
-using Movement.Providers;
+﻿using Movement.Providers;
 using UnityEngine;
 
 namespace Models

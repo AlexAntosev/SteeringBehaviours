@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 590110084}
   - component: {fileID: 590110095}
   m_Layer: 0
-  m_Name: RabbitBox
+  m_Name: Rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1765,9 +1765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805d46fb1df60fa49aac01ffa5089805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rabbitsCount: 5
-  wolvesCount: 1
-  deersCount: 3
+  rabbitsCount: 10
+  wolvesCount: 3
+  deersCount: 7
   bulletPrefab: {fileID: 187646215}
   ground: {fileID: 939339850}
   player: {fileID: 885255301}

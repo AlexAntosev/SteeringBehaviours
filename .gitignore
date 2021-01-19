@@ -41,7 +41,6 @@ UnityVS.VersionSpecific.dll.meta
 Thumbs.db
 thumbs.db
 **/.vs/**
-/Build/*
 /Library/*
 /Temp/*
 /Obj/*
