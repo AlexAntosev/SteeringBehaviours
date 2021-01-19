@@ -23,6 +23,11 @@ namespace Movement.Providers.Flock
             
             foreach (var flockCreature in flock)
             {
+                if (!flockCreature.IsAlive)
+                {
+                    continue;
+                }
+
                 var distanceToFlockCreature = (transform.position - flockCreature.transform.position).magnitude;
                 if (IsNearFlockCreature(distanceToFlockCreature))
                 {

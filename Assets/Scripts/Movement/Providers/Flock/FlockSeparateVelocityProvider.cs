@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Movement.Providers.Flock
 {
-    class FlockSeparateVelocityProvider : DesiredVelocityProvider
+    public class FlockSeparateVelocityProvider : DesiredVelocityProvider
     {
         public List<Creature> flock;
 
@@ -23,6 +23,11 @@ namespace Movement.Providers.Flock
 
             foreach (var flockCreature in flock)
             {
+                if (!flockCreature.IsAlive)
+                {
+                    continue;
+                }
+                
                 float distanceToFlockCreature = (transform.position - flockCreature.transform.position).magnitude;
                 if (IsNearFlockCreature(distanceToFlockCreature))
                 {

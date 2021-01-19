@@ -29,13 +29,6 @@ namespace Models
 
         public void Update()
         {
-            if (!IsAlive)
-            {
-                return;
-            }
-            
-            Flair();
-
             ApplyFriction();
 
             ApplySteeringForce();
@@ -47,6 +40,7 @@ namespace Models
         {
             IsAlive = false;
             GetComponent<Renderer>().material.color = Color.red;
+            transform.rotation = Quaternion.AngleAxis(90, transform.forward);
         }
 
         private void ApplyFriction()
@@ -103,33 +97,6 @@ namespace Models
             }
 
             return desiredVelocity;
-        }
-        
-        private void Flair()
-        {
-            var affectiveVelocityProviders = GetComponents<IAffectiveVelocityProvider>();
-            if (affectiveVelocityProviders == null)
-            {
-                return;
-            }
-
-            foreach (var affectiveVelocityProvider in affectiveVelocityProviders)
-            {
-                affectiveVelocityProvider.NearestCreature = GetNearestCreature();
-            }
-        }
-
-        private Creature GetNearestCreature()
-        {
-            var flairResolver = GetComponent<FlairResolver>();
-            if (flairResolver == null)
-            {
-                return null;
-            }
-
-            var nearestCreature = flairResolver.GetNearestCreature();  
-            
-            return nearestCreature;
         }
         
         private void LockRotation()

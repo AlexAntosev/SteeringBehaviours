@@ -121,99 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &87256217
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 87256218}
-  - component: {fileID: 87256221}
-  - component: {fileID: 87256220}
-  - component: {fileID: 87256219}
-  m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &87256218
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87256217}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.51, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 885255298}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &87256219
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87256217}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &87256220
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87256217}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: c71d11f3c3637f440958a64fd6c5cbfd, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &87256221
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87256217}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,13 +546,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 78.2, z: 0}
+  m_LocalRotation: {x: 0.5400641, y: -0, z: -0, w: 0.8416239}
+  m_LocalPosition: {x: 0, y: 78.2, z: -39.4}
   m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 65.376, y: 0, z: 0}
 --- !u!4 &559942643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010945598816, guid: ab440feedacbd0d40aaac5abd4acd8fd,
@@ -671,6 +578,7 @@ GameObject:
   - component: {fileID: 590110090}
   - component: {fileID: 590110085}
   - component: {fileID: 590110084}
+  - component: {fileID: 590110095}
   m_Layer: 0
   m_Name: RabbitBox
   m_TagString: Untagged
@@ -850,8 +758,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8537ad90f1789a748ae44b01b7a19f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 10.2
   creaturesToFlair: []
+--- !u!114 &590110095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590110083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d493a64b67440c8498282f049e21ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Creature: {fileID: 0}
+  FlairResolver: {fileID: 0}
+  fleeVelocityProvider: {fileID: 0}
+  wonderVelocityProvider: {fileID: 0}
+  avoidEdgesVelocityProvider: {fileID: 0}
 --- !u!1001 &752549621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,7 +951,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 940428306}
-  - {fileID: 87256218}
   - {fileID: 559942643}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1089,6 +1013,7 @@ GameObject:
   - component: {fileID: 907272606}
   - component: {fileID: 907272605}
   - component: {fileID: 907272604}
+  - component: {fileID: 907272614}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Untagged
@@ -1256,6 +1181,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907272614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907272603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e199189cee4baa951e35ec9e5c034f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Creature: {fileID: 0}
+  FlairResolver: {fileID: 0}
+  seekVelocityProvider: {fileID: 0}
+  wonderVelocityProvider: {fileID: 0}
+  avoidEdgesVelocityProvider: {fileID: 0}
 --- !u!1 &939339850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1377,8 @@ GameObject:
   - component: {fileID: 1393756174}
   - component: {fileID: 1393756173}
   - component: {fileID: 1393756172}
+  - component: {fileID: 1393756184}
+  - component: {fileID: 1393756183}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -1544,8 +1488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 1
-  velocityLimit: 2.63
-  steeringForceLimit: 5
+  velocityLimit: 4.06
+  steeringForceLimit: 5.53
 --- !u!65 &1393756179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1621,6 +1565,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393756183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393756171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695856ea9fca48718560691e37ad5584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Creature: {fileID: 0}
+  FlairResolver: {fileID: 0}
+  flockAlignVelocityProvider: {fileID: 0}
+  flockCohesionVelocityProvider: {fileID: 0}
+  flockSeparateVelocityProvider: {fileID: 0}
+  fleeVelocityProvider: {fileID: 0}
+  avoidEdgesVelocityProvider: {fileID: 0}
+--- !u!114 &1393756184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393756171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937c924a02e97d64aae65fc97ae5c6c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
 --- !u!1001 &1527481557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1634,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010945598816, guid: ab440feedacbd0d40aaac5abd4acd8fd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010945598816, guid: ab440feedacbd0d40aaac5abd4acd8fd, type: 3}
       propertyPath: m_LocalScale.x
@@ -1789,9 +1765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805d46fb1df60fa49aac01ffa5089805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rabbitsCount: 20
-  wolvesCount: 5
-  deersCount: 10
+  rabbitsCount: 5
+  wolvesCount: 1
+  deersCount: 3
   bulletPrefab: {fileID: 187646215}
   ground: {fileID: 939339850}
   player: {fileID: 885255301}

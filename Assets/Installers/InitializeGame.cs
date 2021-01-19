@@ -126,6 +126,8 @@ namespace Installers
             SetupRabbitsFlair();
 
             SetupWolvesFlair();
+            
+            SetupDeersFlair();
         }
 
         private void SetupWolvesFlair()
@@ -147,6 +149,16 @@ namespace Installers
                 flairResolver.creaturesToFlair.AddRange(_wolves);
                 flairResolver.creaturesToFlair.AddRange(_rabbits.Where(r => r != rabbit));
                 flairResolver.creaturesToFlair.AddRange(_deers);
+                flairResolver.creaturesToFlair.Add(player);
+            }
+        }
+        
+        private void SetupDeersFlair()
+        {
+            foreach (var deer in _deers)
+            {
+                var flairResolver = deer.GetComponent<FlairResolver>();
+                flairResolver.creaturesToFlair.AddRange(_wolves);
                 flairResolver.creaturesToFlair.Add(player);
             }
         }
